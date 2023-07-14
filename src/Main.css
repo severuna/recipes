@@ -9,6 +9,12 @@
     align-items: center;
 }
 
+.main-head {
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
 .title {
     font-size: 4rem;
     font-weight: 900;
