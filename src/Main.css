@@ -2,7 +2,7 @@
     max-width: calc(100vw - 8rem);
     min-height: calc(100vh - 4rem);
     background-color: var(--black);
-    margin: 0 auto;
+    margin: 2rem auto;
     border: 1px solid var(--gray);
     gap: 3rem;
     padding: 3rem 4rem;
