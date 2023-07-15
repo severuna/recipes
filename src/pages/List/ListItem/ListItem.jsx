@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ListItem.css';
+import { Link } from 'react-router-dom';
 
 const ListItem = ( props ) => {
     const [width, setWidth] = useState({});
@@ -24,9 +25,11 @@ const ListItem = ( props ) => {
         <img src={props.image_url} alt={props.name} onLoad={(e) => setImageSize(e)} className='list-item__img' style={width}/>
             <div className='list-item__content column'>
                 <div className='column'>
-                <h2 className='list-item__title'>{props.name}</h2>
-                <p className='list-item__description'>{props.description.length > 100 ? props.description.substr(0, 200) + '...' : props.description}</p>
-                <p className='list-item__tagline'><span>TAGLINE:</span> {props.tagline}</p>
+                    <Link to={`/recipes/${props.id}`}>
+                        <h2 className='list-item__title'>{props.name}</h2>
+                    </Link>
+                    <p className='list-item__description'>{props.description.length > 100 ? props.description.substr(0, 200) + '...' : props.description}</p>
+                    <p className='list-item__tagline'><span>TAGLINE:</span> {props.tagline}</p>
                 </div>
                 <div className='list-item__details row'>
                     <p><span>IBU: </span>{props.ibu}</p>
