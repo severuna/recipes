@@ -22,6 +22,11 @@ const ListItem = ( props ) => {
         }
     }
 
+    const [check, setCheck] = useState({
+        id: props.id,
+        isChecked: false
+    })
+
     const setLocation = ( e ) => {
         e.preventDefault();
         if(e.button === 0) {
@@ -29,8 +34,17 @@ const ListItem = ( props ) => {
         }
     }
 
+    const checkRecipe = ( e ) => {
+        e.preventDefault();
+        if(!check.isChecked) {
+            setCheck({...check, isChecked: true})
+        } else {
+            setCheck({...check, isChecked: false})
+        }
+    }
+
     return (
-        <div className='list-item row' onClick={(e) => setLocation(e)}>
+        <div className={`list-item row ${!check.isChecked ? 'uncheck' : 'check'}`} onClick={(e) => setLocation(e)} onContextMenu={(e) => checkRecipe(e)}>
             <img src={props.image_url} alt={props.name} onLoad={(e) => setImageSize(e)} className='list-item__img' style={width}/>
             <div className='list-item__content column'>
                 <div className='column'>

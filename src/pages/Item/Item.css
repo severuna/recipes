@@ -69,3 +69,11 @@
   text-transform: uppercase;
   font-weight: 900;
 }
+
+.check {
+  border: 3px solid red;
+}
+
+.uncheck {
+  border: 1px solid var(--white);
+}

@@ -1,0 +1,14 @@
+.delete-btn {
+    background-color: var(--main-black);
+    border: 2px solid crimson;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: crimson;
+    font-weight: 900;
+    font-style: italic;
+    position: absolute;
+    top:  0;
+    left: 5rem;
+}
