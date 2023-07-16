@@ -5,8 +5,6 @@ import { recipesStore } from '../../../store';
 
 const ListItem = ( props ) => {
     const [width, setWidth] = useState({});
-
-    const checkedArr = recipesStore((state) => state.checkedArr);
     const setCheckedArr = recipesStore((state) => state.setCheckedArr)
 
     const navigation = useNavigate();

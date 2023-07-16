@@ -3,7 +3,7 @@
     width: 100%;
     background-color: var(--main-black);
     min-height: 37rem;
-    border: 1px solid var(--white);
+    border: 3px solid var(--white);
     padding: 1.5rem;
     justify-content: space-between;
     gap: 2rem;
@@ -51,4 +51,12 @@
 
 .list-item__details span {
     color: var(--yellow);
+}
+
+.check {
+  border: 3px solid red;
+}
+
+.uncheck {
+  border: 3px solid var(--white);
 }
