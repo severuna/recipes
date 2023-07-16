@@ -18,10 +18,18 @@ const Item = () => {
         navigation(-1);
     }
 
+    const viewIngredients = ( ingredients ) => {
+        let ingredientsArr = [];
+        ingredients.forEach((elem) => {
+            ingredientsArr.push(<li key={Math.random() * 3}><i>{elem.name}</i> - {elem.amount.unit} {elem.amount.unit}; {elem.add} {elem.attribute}</li>);
+        })
+        return ingredientsArr
+    }
+
     return (
         <div className='item column'>
             <div className='item-head row'>
-                <button className='back-btn' onClick={(e) => backToList(e)}>back to list</button>
+                <button className='back-btn' onClick={(e) => backToList(e)}>back</button>
                 <h1 className='title'>{RECIPE.name}</h1>
             </div>
             <div className='item-main row'>
@@ -44,7 +52,23 @@ const Item = () => {
                     <p className='item-prop'><span>boil volume: </span>{RECIPE.boil_volume.value} {RECIPE.boil_volume.unit}</p>
                     <ul className='item-prop'><span>method:</span>
                         <li><span>mash temp:</span> {RECIPE.method.mash_temp[0].temp.value} {RECIPE.method.mash_temp[0].temp.unit}, <span>duration:</span> {RECIPE.method.mash_temp[0].duration}</li>
+                        <li><span>fermentation:</span> {RECIPE.method.fermentation.temp.value} {RECIPE.method.fermentation.temp.unit}</li>
                     </ul>
+                    <ul className='item-prop'><span>ingredients:</span>
+                        <li><span>malt:</span>
+                            <ol>
+                                {viewIngredients(RECIPE.ingredients.malt)}
+                            </ol>
+                        </li>
+                        <li><span>hops:</span>
+                            <ol>
+                                {viewIngredients(RECIPE.ingredients.hops)}
+                            </ol>
+                        </li>
+                        <li><span>yeast:</span> {RECIPE.ingredients.yeast}</li>
+                    </ul>
+                    <p className='item-prop'><span>food pairing: </span>{RECIPE.food_pairing[0]}, {RECIPE.food_pairing[1]}, {RECIPE.food_pairing[2]}</p>
+                    <p className='item-prop'><span>brewers tips: </span>{RECIPE.brewers_tips}</p>
                 </div>
             </div>
         </div>
