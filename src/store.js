@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-export const recipesStore = create((set) => ({
+export const recipesStore = create((set, get) => ({
     recipes: [],
     loading: false,
     error: null,
@@ -13,5 +13,13 @@ export const recipesStore = create((set) => ({
         } catch(err) {
             set({error: err.message, loading: false})
         }
+    }, 
+    checkedArr: [],
+    setCheckedArr: ( item ) => {
+        get().checkedArr.length === 0 
+            ?
+            set({checkedArr: [item]})
+            :
+            get().checkedArr.some(elem => elem.id === item.id) ? set({checkedArr: get().checkedArr.filter(elem => Number(elem.id) !== Number(item.id))}) : set({checkedArr: [...get().checkedArr,item]});
     }
 }));

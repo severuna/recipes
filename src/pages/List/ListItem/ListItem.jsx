@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './ListItem.css';
 import { useNavigate } from 'react-router-dom';
+import { recipesStore } from '../../../store';
 
 const ListItem = ( props ) => {
     const [width, setWidth] = useState({});
+
+    const checkedArr = recipesStore((state) => state.checkedArr);
+    const setCheckedArr = recipesStore((state) => state.setCheckedArr)
 
     const navigation = useNavigate();
 
@@ -38,8 +42,10 @@ const ListItem = ( props ) => {
         e.preventDefault();
         if(!check.isChecked) {
             setCheck({...check, isChecked: true})
+            setCheckedArr({...props})
         } else {
             setCheck({...check, isChecked: false})
+            setCheckedArr({...props})
         }
     }
 
