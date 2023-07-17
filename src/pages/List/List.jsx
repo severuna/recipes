@@ -16,9 +16,12 @@ const List = () => {
     }, [fetchRecipes])
 
     let elements = [];
-
+    let counter = 0;
     recipes.forEach((element) => {
-        elements.push(<ListItem key={element.id} {...element} />)
+        if(counter <= 14) {
+            elements.push(<ListItem key={element.id} {...element} />)
+        }
+        counter++
     });
 
     return (
