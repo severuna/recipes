@@ -1,15 +1,19 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 import axios from 'axios';
 
-export const recipesStore = create((set, get) => ({
+const SERVER_LINK = 'https://api.punkapi.com/v2/beers?page=';
+
+export const recipesStore = create(devtools((set, get) => ({
     recipes: [],
     loading: false,
     error: null,
-    fetchRecipes: async () => {
+    apiPage: 1,
+    fetchRecipes: async ( ) => {
         try {
             set({loading: true});
-            const response = await axios.get('https://api.punkapi.com/v2/beers?page=1');
-            set({loading: false, recipes: response.data})
+            const response = await axios.get(SERVER_LINK+get().apiPage);
+            set({loading: false, recipes: response.data, apiPage: Number(get().apiPage++)})
         } catch(err) {
             set({error: err.message, loading: false})
         }
@@ -27,5 +31,10 @@ export const recipesStore = create((set, get) => ({
             get().recipes.some(elem => elem.id === item.id) ? set({recipes: get().recipes.filter(elem => Number(elem.id) !== Number(item.id))}) : set({recipes: [...get().recipes,item]});
         })
         set({checkedArr: []})
-    }
-}));
+        if(get().recipes.length === 0) {
+            set({ apiPage: Number(get().apiPage + 1)})
+            get().fetchRecipes()
+            return get().recipes
+        }
+    },
+})));
