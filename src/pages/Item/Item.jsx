@@ -11,7 +11,13 @@ const Item = () => {
 
     const recipes = recipesStore((state) => state.recipes);
 
-    let RECIPE = recipes[recipeId - 1];
+    let RECIPE;
+
+    recipes.forEach((elem) => {
+        if(elem.id === Number(recipeId)) {
+            RECIPE = elem
+        }
+    })
 
     const backToList = ( e ) => {
         e.preventDefault();
