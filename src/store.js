@@ -21,5 +21,11 @@ export const recipesStore = create((set, get) => ({
             set({checkedArr: [item]})
             :
             get().checkedArr.some(elem => elem.id === item.id) ? set({checkedArr: get().checkedArr.filter(elem => Number(elem.id) !== Number(item.id))}) : set({checkedArr: [...get().checkedArr,item]});
+    },
+    deleteItems: (  ) => {
+        get().checkedArr.forEach(item => {
+            get().recipes.some(elem => elem.id === item.id) ? set({recipes: get().recipes.filter(elem => Number(elem.id) !== Number(item.id))}) : set({recipes: [...get().recipes,item]});
+        })
+        set({checkedArr: []})
     }
 }));
